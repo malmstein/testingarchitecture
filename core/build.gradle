@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.2.4'
+
+    testCompile 'junit:junit:4.+'
+    testCompile 'com.squareup:fest-android:1.0.7'
+    testCompile 'org.mockito:mockito-all:1.8.+'
+}
+
+sourceSets {
+    main {
+        java.srcDirs = ['src/main/java']
+    }
+    test {
+        java.srcDirs = ['src/unit/java']
+    }
+}
+

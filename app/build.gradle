@@ -1,4 +1,14 @@
+buildscript {
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.12.1'
+    }
+}
+
 apply plugin: 'com.android.application'
+
+dependencies {
+    androidTestCompile "com.google.android:android-espresso-bundled:1.1.0-SNAPSHOT"
+}
 
 android {
     compileSdkVersion 20
@@ -10,15 +20,18 @@ android {
         targetSdkVersion 20
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
     }
+
     buildTypes {
-        release {
+
+        debug{
             runProguard false
+        }
+
+        release {
+            runProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
