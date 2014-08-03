@@ -20,3 +20,5 @@ The project has three different modules
 ./gradlew check
 ./gradlew build
 ```
+
+This project is an iteration on what can be found in here: http://blog.blundell-apps.com/android-gradle-app-with-robolectric-junit-tests/
