@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'robolectric'
 apply plugin: 'jacoco'
 
@@ -15,8 +15,7 @@ android {
             runProguard false
         }
         release {
-            runProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            runProguard false
         }
     }
 
@@ -25,6 +24,7 @@ android {
         disable 'InvalidPackage'
     }
 }
+
 dependencies {
     def androidModule = project(':app')
     compile androidModule
