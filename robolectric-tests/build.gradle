@@ -1,32 +1,52 @@
-apply plugin: 'java'
+apply plugin: 'com.android.application'
+apply plugin: 'robolectric'
 
+android {
+    compileSdkVersion 20
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 20
+    }
+    buildTypes {
+        debug {
+            runProguard false
+        }
+        release {
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+        disable 'InvalidPackage'
+    }
+}
 dependencies {
     def androidModule = project(':app')
     compile androidModule
 
-    testCompile 'junit:junit:4.+'
-    testCompile 'com.squareup:fest-android:1.0.7'
-    testCompile 'org.mockito:mockito-all:1.8.+'
-    testCompile 'org.robolectric:robolectric:2.2'
+    androidTestCompile 'junit:junit:4.11'
+    androidTestCompile 'com.squareup:fest-android:1.0.7'
+    androidTestCompile 'org.mockito:mockito-all:1.9.5'
+    androidTestCompile 'org.robolectric:robolectric:2.3'
 
-    testCompile androidModule.android.applicationVariants.toList().first().javaCompile.classpath
-    testCompile androidModule.android.applicationVariants.toList().first().javaCompile.outputs.files
-    testCompile files(androidModule.plugins.findPlugin("com.android.application").getBootClasspath())
+    androidTestCompile androidModule.android.applicationVariants.toList().first().javaCompile.classpath
+    androidTestCompile androidModule.android.applicationVariants.toList().first().javaCompile.outputs.files
+    androidTestCompile files(androidModule.plugins.findPlugin("android").getBootClasspath())
+}
 
+robolectric {
+    // configure the set of classes for JUnit tests
+    set('include', ['**/*Test.class', '**/*Should.class', '**/*Tests.class'])
+
+    // configure max heap size of the test JVM
+    maxHeapSize = "2048m"
+}
 
 }
 
-sourceSets {
-    test {
-        java.srcDirs = ['src/unit/java']
-    }
-}
-
-tasks.withType(Test) {
-    scanForTestClasses = false
-    include "**/*Should.class"
-    include "**/*Test.class"
-    include "**/*Tests.class"
-}
 
 
