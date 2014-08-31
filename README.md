@@ -21,4 +21,12 @@ The project has three different modules
 ./gradlew build
 ```
 
+**JaCoCo** reports can be generated for both `/core` and `/robolectric-tests` running:
+
+```
+./gradlew test jacoco
+./gradlew check jacoco
+./gradlew build jacoco
+```
+
 This project is an iteration on what can be found in here: http://blog.blundell-apps.com/android-gradle-app-with-robolectric-junit-tests/
