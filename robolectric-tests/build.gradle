@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'robolectric'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 20
@@ -46,7 +47,33 @@ robolectric {
     maxHeapSize = "2048m"
 }
 
+jacoco {
+    toolVersion = "0.7.0.201403182114"
 }
 
+task jacocoTestReport(type: JacocoReport, dependsOn: "test") {
+    group = "Reporting"
 
+    description = "Generate Jacoco coverage reports for Android sources"
+
+    classDirectories = fileTree(
+            dir: '../app/build/intermediates/classes/debug',
+            excludes: ['**/R.class',
+                       '**/R$*.class',
+                       '**/*$ViewInjector*.*',
+                       '**/BuildConfig.*',
+                       '**/Manifest*.*']
+    )
+
+    def coverageSourceDirs = ['../app/src/main/java']
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files('../robolectric-tests/build/jacoco/testDebug.exec')
+
+    reports {
+        html.enabled = true
+        html.destination "$buildDir/jacoco"
+    }
+
+}
 
