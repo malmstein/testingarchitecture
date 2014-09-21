@@ -1,11 +1,12 @@
 apply plugin: 'java'
+apply plugin: 'jacoco'
 
 dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
 
-    testCompile 'junit:junit:4.+'
+    testCompile 'junit:junit:4.11'
     testCompile 'com.squareup:fest-android:1.0.7'
-    testCompile 'org.mockito:mockito-all:1.8.+'
+    testCompile 'org.mockito:mockito-all:1.9.5'
 }
 
 sourceSets {

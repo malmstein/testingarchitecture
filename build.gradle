@@ -10,6 +10,10 @@ subprojects {
                 url "http://ci.novoda.com/maven/releases/"
             }
         }
+        dependencies {
+            classpath 'com.android.tools.build:gradle:0.12.1'
+            classpath 'org.robolectric:robolectric-gradle-plugin:0.11.+'
+        }
     }
 
     repositories {

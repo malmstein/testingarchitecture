@@ -1,17 +1,15 @@
-package com.malmstein.testingarchitecture.test;
+package com.malmstein.testingarchitecture;
 
 import android.view.View;
 
-import com.malmstein.testingarchitecture.MainActivity;
-import com.malmstein.testingarchitecture.R;
-import com.malmstein.testingarchitecture.RobolectricGradleTestRunner;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.annotation.Config;
 import org.robolectric.util.ActivityController;
 
 import static org.junit.Assert.assertEquals;
 
+@Config(emulateSdk = 18)
 @RunWith(RobolectricGradleTestRunner.class)
 public class MyAndroidClassTest {
 
