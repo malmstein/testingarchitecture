@@ -1,6 +1,7 @@
 package com.malmstein.testingarchitecture;
 
 import android.test.ActivityInstrumentationTestCase2;
+import com.squareup.spoon.Spoon;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
@@ -21,6 +22,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
     public void test_activity_shows_hello_world() {
         onView(withId(R.id.tv_hello_world)).check((matches(isDisplayed())));
+        Spoon.screenshot(getActivity(), "TAG");
     }
 
 }
