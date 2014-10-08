@@ -1,10 +1,12 @@
 apply plugin: 'com.android.application'
+apply plugin: 'spoon'
 
 dependencies {
     def coreModule = project(':core')
     compile coreModule
 
     androidTestCompile "com.google.android:android-espresso-bundled:1.1.0-SNAPSHOT"
+    androidTestCompile 'com.squareup.spoon:spoon-client:1.1.0'
 }
 
 android {
@@ -31,4 +33,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+spoon {
+    debug = true
+    failIfNoDeviceConnected = true
 }
